@@ -8,5 +8,3 @@ Testing purpose
 Coming Soon....
 
 
-## Merge Conflict Edit from Main
-Changes from the main branch    
