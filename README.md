@@ -6,7 +6,6 @@ Testing purpose
 
 ## Istallation
 Coming Soon....
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-
+## Merge Conflit from feature api branch
+changing readme file form feature api branch. 
