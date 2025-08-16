@@ -7,5 +7,6 @@ Testing purpose
 ## Istallation
 Coming Soon....
 
-## Merge Conflit from feature api branch
-changing readme file form feature api branch. 
+
+## Merge Conflict Change from Main
+changing readme file from master branch
