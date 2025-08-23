@@ -21,8 +21,8 @@ jobs:
               run:  echo "The secret is ${{ secrets.API_KEY }}"
             
             - name: Install dependencies
-
-              working-directory:  ./acme-widget            - run:  npm install
+              working-directory:  ./acme-widget
+            - run:  npm install
             - run:  npm ci
             - run:  npm test
             
