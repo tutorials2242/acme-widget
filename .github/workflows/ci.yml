@@ -17,7 +17,7 @@ jobs:
               with:
                 node-version: ${{ matrix.node-version }}
 
-
+            - uses: secret
             - name: Run with secret
               run:  echo "The secret is ${{ secrets.API_KEY }}"
                 
