@@ -20,7 +20,6 @@ jobs:
             - name: Run with secret
               run:  echo "The secret is ${{ secrets.API_KEY }}"
                 
-            #- run: npm install
-            #- run: npm test
-            #- run: npm run build
-
+            - run: npm ci
+            - run: npm test
+            
