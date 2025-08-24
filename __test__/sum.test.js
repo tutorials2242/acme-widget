@@ -1,7 +1,5 @@
 const sum = require('../sum');
 
-// sum.js
-function sum(a, b) {
-  return a + b;
-}
-module.exports = sum;
+test('adds 2 + 2 = 5',() => {
+    expect(sum(2, 2)).toBe(4);
+});
