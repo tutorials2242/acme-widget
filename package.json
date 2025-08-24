@@ -210,6 +210,7 @@
     "jest": "^30.0.5"
   },
   "scripts": {
+    "dev": "node index.js",
     "test": "jest"
   },
   "repository": {
