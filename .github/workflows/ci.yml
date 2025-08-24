@@ -1,33 +1,33 @@
-name: CI
+name: Node.js CI
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        
-        strategy:
-          matrix:
-            node-version: [16, 18, 20]
-        
-        steps:
-            - uses: actions/checkout@v3
-            - name: Set up Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v3
-              with:
-                node-version: ${{ matrix.node-version }}
+  build-and-test:
+    runs-on: ubuntu-latest
 
-            - name: Run with secret
-              run:  echo "The secret is ${{ secrets.API_KEY }}"
-            
-            - name: Install dependencies
-              run: |
-                 if [ -f package-lock.json ]; then
-                   npm ci
-                 else
-                   npm install
-                 fi
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-            - name: Run tests
-              run:  npm test -- --ci --watchAll=false
-            
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      # Fallback to npm install if package-lock.json is missing
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Run tests
+        run: npm test -- --ci --watchAll=false
