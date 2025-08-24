@@ -21,8 +21,13 @@ jobs:
               run:  echo "The secret is ${{ secrets.API_KEY }}"
             
             - name: Install dependencies
-              working-directory:  ./acme-widget
-            - run:  npm install
-            - run:  npm ci
-            - run:  npm test
+              run: |
+                 if [ -f package-lock.json ]; then
+                   npm ci
+                 else
+                   npm install
+                 fi
+
+            - name: Run tests
+              run:  npm test -- --ci --watchAll=false
             
