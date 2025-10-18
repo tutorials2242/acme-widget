@@ -11,29 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      # It's good practice to test on the latest Node.js LTS version
-      # and the version just before it, if applicable.
       matrix:
-        node-version: [20.x] # Use '20.x' for latest in that major version
+        node-version: [20.x]  # Test with latest Node 20.x
 
     steps:
       - name: Checkout repository
-        # Use the latest major version for stability and security
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        # Use the latest major version for stability and security
+      - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          # 💡 Add Dependency Caching: This caches the node_modules
-          # based on your lock file, speeding up future runs significantly.
           cache: 'npm'
 
       - name: Clean install dependencies
-        # 💡 Use 'npm ci' instead of 'npm install'. 
-        # 'npm ci' is faster and more reliable for CI environments.
         run: npm ci
 
-      - name: Run tests
-        run: npm test
+      # Optional: verify Jest installation
+      - name: Verify Jest installation
+        run: npx jest --version
+
+      - name: Run Jest tests
+        run: npm test -- --ci --runInBand --reporters=default --reporters=jest-junit
