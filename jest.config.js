@@ -1,7 +1,9 @@
 // jest.config.js
-
 module.exports = {
-  // other configuration options...
-  testRunner: 'jest-circus/runner',
-  // more configuration options...
+  testEnvironment: "node",
+  verbose: true,
+  transform: {
+    "^.+\\.jsx?$": "babel-jest"
+  },
+  testMatch: ["**/__tests__/**/*.test.js"]
 };
